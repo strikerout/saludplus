@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Agregamos Chart.js -->
+    <title>SaludPlus</title>
+</head>
+<body>
+
+    <header>
+        <img src="saludpluslogo.png" alt="Logo de SaludPlus" width="150" height="150">
+        <h1>SaludPlus</h1>
+        <p>Equilibra tu trabajo y bienestar</p>
+    </header>
+
+    <section id="how-it-works">
+        <h2>¿Cómo Funciona?</h2>
+        <p>SaludPlus adapta rutinas de ejercicio a tu horario laboral y tiempos libres. Con seguimiento motivador, te ayuda a mantener un equilibrio saludable.</p>
+    </section>
+
+    <section id="features">
+        <h2>Características Principales</h2>
+        <ul>
+            <li>Rutinas personalizadas</li>
+            <li>Seguimiento motivador</li>
+            <li>Accesibilidad y flexibilidad</li>
+        </ul>
+    </section>
+
+    <section id="calendar-section">
+        <h2>Tu Rutina</h2>
+        <div id="calendar"></div>
+    </section>
+
+    <section id="weight-chart">
+        <h2>Seguimiento del proceso</h2>
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </section>
+    
+    <section id="signup">
+        <h2>¡Únete a SaludPlus!</h2>
+        <p>Regístrate ahora para empezar tu viaje hacia una vida más saludable y productiva.</p>
+        <a href="#" class="button">Registrarse</a>
+    </section>
+    <br><br><br><br>
+    <footer>
+        <p>&copy; 2023 SaludPlus. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                // Configuración de FullCalendar
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: '2023-12-01', // Fecha de inicio predeterminada
+                editable: false,
+                events: [
+                    // Lunes
+                    {
+                        title: 'Ejercicio Cardio',
+                        start: '2023-12-04T07:00:00',
+                        end: '2023-12-04T08:30:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-04T09:00:00',
+                        end: '2023-12-04T12:00:00'
+                    },
+                    {
+                        title: 'Almuerzo',
+                        start: '2023-12-04T12:00:00',
+                        end: '2023-12-04T13:00:00'
+                    },
+                    {
+                        title: 'Caminata',
+                        start: '2023-12-04T13:00:00',
+                        end: '2023-12-04T14:00:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-04T14:00:00',
+                        end: '2023-12-04T18:00:00'
+                    },
+                    // Martes
+                    {
+                        title: 'Ejercicio de Resistencia',
+                        start: '2023-12-05T07:00:00',
+                        end: '2023-12-05T08:30:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-05T09:00:00',
+                        end: '2023-12-05T12:00:00'
+                    },
+                    {
+                        title: 'Almuerzo',
+                        start: '2023-12-05T12:00:00',
+                        end: '2023-12-05T13:00:00'
+                    },
+                    {
+                        title: 'Caminata',
+                        start: '2023-12-05T13:00:00',
+                        end: '2023-12-05T14:00:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-05T14:00:00',
+                        end: '2023-12-05T18:00:00'
+                    },
+                    // Miércoles
+                    {
+                        title: 'Ejercicio de Flexibilidad',
+                        start: '2023-12-06T07:00:00',
+                        end: '2023-12-06T08:30:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-06T09:00:00',
+                        end: '2023-12-06T12:00:00'
+                    },
+                    {
+                        title: 'Almuerzo',
+                        start: '2023-12-06T12:00:00',
+                        end: '2023-12-06T13:00:00'
+                    },
+                    {
+                        title: 'Caminata',
+                        start: '2023-12-06T13:00:00',
+                        end: '2023-12-06T14:00:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-06T14:00:00',
+                        end: '2023-12-06T18:00:00'
+                    },
+                    // Jueves
+                    {
+                        title: 'Entrenamiento de Fuerza',
+                        start: '2023-12-07T07:00:00',
+                        end: '2023-12-07T08:30:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-07T09:00:00',
+                        end: '2023-12-07T12:00:00'
+                    },
+                    {
+                        title: 'Almuerzo',
+                        start: '2023-12-07T12:00:00',
+                        end: '2023-12-07T13:00:00'
+                    },
+                    {
+                        title: 'Caminata',
+                        start: '2023-12-07T13:00:00',
+                        end: '2023-12-07T14:00:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-07T14:00:00',
+                        end: '2023-12-07T18:00:00'
+                    },
+                    // Viernes
+                    {
+                        title: 'Ejercicio de Equilibrio',
+                        start: '2023-12-08T07:00:00',
+                        end: '2023-12-08T08:30:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-08T09:00:00',
+                        end: '2023-12-08T12:00:00'
+                    },
+                    {
+                        title: 'Almuerzo',
+                        start: '2023-12-08T12:00:00',
+                        end: '2023-12-08T13:00:00'
+                    },
+                    {
+                        title: 'Caminata',
+                        start: '2023-12-08T13:00:00',
+                        end: '2023-12-08T14:00:00'
+                    },
+                    {
+                        title: 'Trabajo',
+                        start: '2023-12-08T14:00:00',
+                        end: '2023-12-08T18:00:00'
+                    }
+                    // Puedes continuar con los demás días o ajustar según sea necesario
+                ]
+            });
+        });
+    </script>
+     <script>
+        // Simulación de datos de pérdida de peso semana a semana
+        var weightData = [110, 108, 105, 104, 102, 100, 99];
+        var weightGoal = 75;
+        // Configuración de la gráfica
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'Semana 6', 'Semana 7'],
+                datasets: [{
+                    label: 'Peso Semanal (kg)',
+                    data: weightData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Peso Meta',
+                    data: [weightGoal, weightGoal, weightGoal, weightGoal, weightGoal, weightGoal, weightGoal],
+                    type: 'line',
+                    borderColor: 'rgba(255, 0, 0, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 0 // Opcional: para ocultar los puntos en la línea
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    </script>
+    
+    
+    
+    
+
+</body>
+</html>
